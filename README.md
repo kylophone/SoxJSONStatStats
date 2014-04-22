@@ -1,7 +1,7 @@
 stat
 ====
 
-Personal fork of the stat effect in <a href = "http://sox.sourceforge.net/"> SOX</a>. Provides an additional option for JSON output. If you're tired of parsing the output of SOX and rather use JSON, compile sox with this version of stat.c. To use, just add a '-json' flag after you call stat, like this: 
+Personal fork of the stat effect in <a href = "http://sox.sourceforge.net/"> SOX</a>. Provides an additional option for JSON output. If you're tired of parsing the output of SOX and would rather use JSON, compile sox with this version of stat.c. To use, just add a '-json' flag after you call stat, like this: 
 
 ```bash
 $ sox somefile.wav -n stat -json
