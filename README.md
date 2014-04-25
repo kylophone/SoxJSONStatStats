@@ -25,8 +25,7 @@ $ sox somefile.wav -n stat -json
 ```
 OR
 ```bash
-sox somefile.wav -n stats -json
-
+$ sox somefile.wav -n stats -json
 {
 "channelCount" : 4,
 "overall" : {
