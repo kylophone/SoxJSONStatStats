@@ -5,6 +5,7 @@ Personal fork of the stat and stats effects in <a href = "http://sox.sourceforge
 
 ```bash
 $ sox somefile.wav -n stat -json
+
 {
 	"samplesRead" : 657090,
 	"lengthInSeconds" : 14.900000,
@@ -26,6 +27,7 @@ $ sox somefile.wav -n stat -json
 OR
 ```bash
 $ sox somefile.wav -n stats -json
+
 {
 "channelCount" : 4,
 "overall" : {
