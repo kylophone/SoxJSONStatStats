@@ -1,13 +1,10 @@
-stat
+SoxJSONStatStats
 ====
 
-Personal fork of the stat effect in <a href = "http://sox.sourceforge.net/"> SOX</a>. Provides an additional option for JSON output. If you're tired of parsing the output of SOX and would rather use JSON, compile SOX with this version of stat.c. To use, just add a '-json' flag after you call stat, like this: 
+Personal fork of the stat and stats effects in <a href = "http://sox.sourceforge.net/"> SOX</a>. Provides an additional option for JSON output. If you're tired of parsing the output of SOX and would rather use JSON, compile SOX with this version of stat.c and stats.c. To use, just add a '-json' flag after you call stat or stats, like this: 
 
 ```bash
 $ sox somefile.wav -n stat -json
-```
-Output is standard, easy to use, JSON:
-```bash
 {
 	"samplesRead" : 657090,
 	"lengthInSeconds" : 14.900000,
@@ -24,6 +21,83 @@ Output is standard, easy to use, JSON:
 	"RMSDelta" : 0.009420,
 	"roughFrequency" : 891,
 	"volumeAdjustment" : 1.891808
+}
+```
+OR
+```bash
+sox somefile.wav -n stats -json
+
+{
+"channelCount" : 4,
+"overall" : {
+	"dcOffset" : 0.000979,
+	"minLevel" : -0.969940,
+	"maxLevel" : 0.794006,
+	"peakLeveldB" : -0.265101
+	"RMSLeveldB" : -25.984172,
+	"RMSPeakdB" : -11.744568,
+	"RMSTrdB" : -inf,
+	"crestFactor" : "-",
+	"flatFactor" : 0.000000,
+	"pkCount" : 2,
+	"bitDepth" : "16/16",
+	"numSamples" : 169,
+	"lengthSeconds" : 3.832902,
+	"scaleMax" : 1.0,
+	"windowSeconds" : 0.050000,
+	},
+"ch1" : {
+	"dcOffset" : 0.000400,
+	"minLevel" : -0.312927,
+	"maxLevel" : 0.679260,
+	"peakLeveldB" : -3.359276
+	"RMSLeveldB" : -27.832778,
+	"RMSPeakdB" : -14.554000,
+	"RMSTrdB" : -309.033158,
+	"crestFactor" : 16.736902,
+	"flatFactor" : 0.000000,
+	"pkCount" : 2,
+	"bitDepth" : "15/16",
+	},
+"ch2" : {
+	"dcOffset" : 0.000569,
+	"minLevel" : -0.368256,
+	"maxLevel" : 0.678070,
+	"peakLeveldB" : -3.374509
+	"RMSLeveldB" : -28.717487,
+	"RMSPeakdB" : -15.859836,
+	"RMSTrdB" : -inf,
+	"crestFactor" : 18.499029,
+	"flatFactor" : 0.000000,
+	"pkCount" : 2,
+	"bitDepth" : "15/16",
+	},
+"ch3" : {
+	"dcOffset" : 0.000979,
+	"minLevel" : -0.576294,
+	"maxLevel" : 0.794006,
+	"peakLeveldB" : -2.003521
+	"RMSLeveldB" : -24.530456,
+	"RMSPeakdB" : -12.576707,
+	"RMSTrdB" : -inf,
+	"crestFactor" : 13.376631,
+	"flatFactor" : 0.000000,
+	"pkCount" : 2,
+	"bitDepth" : "16/16",
+	},
+"ch4" : {
+	"dcOffset" : -0.000176,
+	"minLevel" : -0.969940,
+	"maxLevel" : 0.585571,
+	"peakLeveldB" : -0.265101
+	"RMSLeveldB" : -24.473025,
+	"RMSPeakdB" : -11.744568,
+	"RMSTrdB" : -inf,
+	"crestFactor" : 16.232903,
+	"flatFactor" : 0.000000,
+	"pkCount" : 2,
+	"bitDepth" : "16/16",
+	},
 }
 ```
 
