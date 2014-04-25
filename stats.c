@@ -226,7 +226,7 @@ static int stop(sox_effect_t * effp)
         fprintf(stderr, "\t\"dcOffset\" : %f,\n", max_sigma_x / p->num_samples);
         fprintf(stderr, "\t\"minLevel\" : %f,\n", min);
         fprintf(stderr, "\t\"maxLevel\" : %f,\n", max);
-        fprintf(stderr, "\t\"peakLeveldB\" : %f\n", linear_to_dB(max(-min, max)));
+        fprintf(stderr, "\t\"peakLeveldB\" : %f,\n", linear_to_dB(max(-min, max)));
         fprintf(stderr, "\t\"RMSLeveldB\" : %f,\n", linear_to_dB(sqrt(sigma_x2 / num_samples)));
         fprintf(stderr, "\t\"RMSPeakdB\" : %f,\n", linear_to_dB(sqrt(max_sigma_x2)));
         fprintf(stderr, "\t\"RMSTrdB\" : ");
@@ -250,7 +250,7 @@ static int stop(sox_effect_t * effp)
             fprintf(stderr, "\t\"dcOffset\" : %f,\n", q->sigma_x / q->num_samples);
             fprintf(stderr, "\t\"minLevel\" : %f,\n", q->min);
             fprintf(stderr, "\t\"maxLevel\" : %f,\n", q->max);
-            fprintf(stderr, "\t\"peakLeveldB\" : %f\n", linear_to_dB(max(-q->min, q->max)));
+            fprintf(stderr, "\t\"peakLeveldB\" : %f,\n", linear_to_dB(max(-q->min, q->max)));
             fprintf(stderr, "\t\"RMSLeveldB\" : %f,\n", linear_to_dB(sqrt(q->sigma_x2 / q->num_samples)));
             fprintf(stderr, "\t\"RMSPeakdB\" : %f,\n", linear_to_dB(sqrt(q->max_sigma_x2)));
             fprintf(stderr, "\t\"RMSTrdB\" : ");
