@@ -34,7 +34,7 @@ $ sox somefile.wav -n stats -json
 	"dcOffset" : 0.000979,
 	"minLevel" : -0.969940,
 	"maxLevel" : 0.794006,
-	"peakLeveldB" : -0.265101
+	"peakLeveldB" : -0.265101,
 	"RMSLeveldB" : -25.984172,
 	"RMSPeakdB" : -11.744568,
 	"RMSTrdB" : -inf,
@@ -51,7 +51,7 @@ $ sox somefile.wav -n stats -json
 	"dcOffset" : 0.000400,
 	"minLevel" : -0.312927,
 	"maxLevel" : 0.679260,
-	"peakLeveldB" : -3.359276
+	"peakLeveldB" : -3.359276,
 	"RMSLeveldB" : -27.832778,
 	"RMSPeakdB" : -14.554000,
 	"RMSTrdB" : -309.033158,
@@ -64,7 +64,7 @@ $ sox somefile.wav -n stats -json
 	"dcOffset" : 0.000569,
 	"minLevel" : -0.368256,
 	"maxLevel" : 0.678070,
-	"peakLeveldB" : -3.374509
+	"peakLeveldB" : -3.374509,
 	"RMSLeveldB" : -28.717487,
 	"RMSPeakdB" : -15.859836,
 	"RMSTrdB" : -inf,
@@ -77,7 +77,7 @@ $ sox somefile.wav -n stats -json
 	"dcOffset" : 0.000979,
 	"minLevel" : -0.576294,
 	"maxLevel" : 0.794006,
-	"peakLeveldB" : -2.003521
+	"peakLeveldB" : -2.003521,
 	"RMSLeveldB" : -24.530456,
 	"RMSPeakdB" : -12.576707,
 	"RMSTrdB" : -inf,
@@ -90,7 +90,7 @@ $ sox somefile.wav -n stats -json
 	"dcOffset" : -0.000176,
 	"minLevel" : -0.969940,
 	"maxLevel" : 0.585571,
-	"peakLeveldB" : -0.265101
+	"peakLeveldB" : -0.265101,
 	"RMSLeveldB" : -24.473025,
 	"RMSPeakdB" : -11.744568,
 	"RMSTrdB" : -inf,
