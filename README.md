@@ -1,7 +1,7 @@
 SoxJSONStatStats
 ====
 
-Personal fork of the stat and stats effects in <a href = "http://sox.sourceforge.net/"> SOX</a>. Provides an additional option for JSON output. If you're tired of parsing the output of SOX and would rather use JSON, compile SOX with this version of stat.c and stats.c. To use, just add a '-json' flag after you call stat or stats, like this: 
+Personal fork of the stat and stats effects in <a href = "http://sox.sourceforge.net/"> SOX</a>. Provides an additional option for JSON output. If you're tired of parsing the output of SOX and would rather use JSON, compile SOX with this version of stat.c and stats.c. The 'stats' effect is generally more useful, and provides information about each channel in a multi-channel file. To use, just add a '-json' flag after you call stat or stats, like this: 
 
 ```bash
 $ sox somefile.wav -n stat -json
