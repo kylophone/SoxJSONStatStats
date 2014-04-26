@@ -230,7 +230,7 @@ static int stop(sox_effect_t * effp)
         fprintf(stderr, "\t\"RMSLeveldB\" : %f,\n", linear_to_dB(sqrt(sigma_x2 / num_samples)));
         fprintf(stderr, "\t\"RMSPeakdB\" : %f,\n", linear_to_dB(sqrt(max_sigma_x2)));
         fprintf(stderr, "\t\"RMSTrdB\" : ");
-          if (min_sigma_x2 != 1) fprintf(stderr, "%f,\n", linear_to_dB(sqrt(min_sigma_x2)));
+          if (min_sigma_x2 != 1) fprintf(stderr, "\"%f\",\n", linear_to_dB(sqrt(min_sigma_x2)));
           else fprintf(stderr, "\"-\",\n");
         if (effp->flows > 1) fprintf(stderr, "\t\"crestFactor\" : \"-\",\n");
         else fprintf(stderr, "\t\"crestFactor\" : %f,\n", sigma_x2 ? avg_peak / sqrt(sigma_x2 / num_samples) : 1);
@@ -241,7 +241,7 @@ static int stop(sox_effect_t * effp)
         fprintf(stderr, "\t\"numSamples\" : %d,\n", atoi(lsx_sigfigs3((double)p->num_samples)));
         fprintf(stderr, "\t\"lengthSeconds\" : %f,\n", p->num_samples / effp->in_signal.rate);
         fprintf(stderr, "\t\"scaleMax\" : 1.0,\n");
-        fprintf(stderr, "\t\"windowSeconds\" : %f,\n", p->time_constant);
+        fprintf(stderr, "\t\"windowSeconds\" : %f\n", p->time_constant);
       fprintf(stderr, "\t},\n");
       
         for (i = 0; i < n; i++) { //Channel Stats Here
@@ -254,15 +254,16 @@ static int stop(sox_effect_t * effp)
             fprintf(stderr, "\t\"RMSLeveldB\" : %f,\n", linear_to_dB(sqrt(q->sigma_x2 / q->num_samples)));
             fprintf(stderr, "\t\"RMSPeakdB\" : %f,\n", linear_to_dB(sqrt(q->max_sigma_x2)));
             fprintf(stderr, "\t\"RMSTrdB\" : ");
-              if (q->min_sigma_x2 != 1)
-              fprintf(stderr, "%f,\n", linear_to_dB(sqrt(q->min_sigma_x2)));
+              if (q->min_sigma_x2 != 1) fprintf(stderr, "\"%f\",\n", linear_to_dB(sqrt(q->min_sigma_x2)));
               else fprintf(stderr, "\"-\",\n");
             fprintf(stderr, "\t\"crestFactor\" : %f,\n", q->sigma_x2? max(-q->min, q->max) / sqrt(q->sigma_x2 / q->num_samples) : 1);
             fprintf(stderr, "\t\"flatFactor\" : %f,\n", linear_to_dB((q->min_runs + q->max_runs) / (q->min_count + q->max_count)));
             fprintf(stderr, "\t\"pkCount\" : %d,\n", atoi(lsx_sigfigs3((double)(q->min_count + q->max_count))));
             b1 = bit_depth(q->mask, q->min, q->max, &b2);
-            fprintf(stderr, "\t\"bitDepth\" : \"%2u/%-2u\",\n", b1, b2);
-          fprintf(stderr, "\t},\n");
+            fprintf(stderr, "\t\"bitDepth\" : \"%2u/%-2u\"\n", b1, b2);
+          fprintf(stderr, "\t}");
+          if (i != (n - 1)) fprintf(stderr, ",");
+          fprintf(stderr, "\n");
         }
       fprintf(stderr, "}\n");
       return SOX_SUCCESS;
