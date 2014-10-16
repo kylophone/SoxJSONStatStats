@@ -264,29 +264,31 @@ static int sox_stat_stop(sox_effect_t * effp)
   /* print out the info in JSON */ //KYLO
   if (stat->json) {
     fprintf(stderr, "{\n");
-    fprintf(stderr, "\t\"samplesRead\" : %d,\n", stat->read);
-    fprintf(stderr, "\t\"lengthInSeconds\" : %f,\n", (double)stat->read/effp->in_signal.rate/effp->in_signal.channels);
+    fprintf(stderr, "\t\"samplesRead\" : \"%d\",\n", stat->read);
+    fprintf(stderr, "\t\"lengthInSeconds\" : \"%f\",\n", (double)stat->read/effp->in_signal.rate/effp->in_signal.channels);
     if (stat->srms)
-      fprintf(stderr, "\t\"scaledByRMS\" : %f,\n", rms);
+      fprintf(stderr, "\t\"scaledByRMS\" : \"%f\",\n", rms);
     else
-      fprintf(stderr, "\t\"scaledBy\" : %f,\n", scale);
-    fprintf(stderr, "\t\"maximumAmplitude\" : %f,\n", stat->max);
-    fprintf(stderr, "\t\"minimumAmplitude\" : %f,\n", stat->min);
-    fprintf(stderr, "\t\"midlineAmplitude\" : %f,\n", stat->mid);
-    fprintf(stderr, "\t\"meanNorm\" : %f,\n", stat->asum/ct);
-    fprintf(stderr, "\t\"meanAmplitude\" : %f,\n", stat->sum1/ct);
-    fprintf(stderr, "\t\"RMSAmplitude\" : %f,\n", sqrt(stat->sum2/ct));
-    fprintf(stderr, "\t\"maximumDelta\" : %f,\n", stat->dmax);
-    fprintf(stderr, "\t\"minimumDelta\" : %f,\n", stat->dmin);
-    fprintf(stderr, "\t\"meanDelta\" : %f,\n", stat->dsum1/(ct-1));
-    fprintf(stderr, "\t\"RMSDelta\" : %f,\n", sqrt(stat->dsum2/(ct-1)));
+      fprintf(stderr, "\t\"scaledBy\" : \"%f\",\n", scale);
+    fprintf(stderr, "\t\"maximumAmplitude\" : \"%f\",\n", stat->max);
+    fprintf(stderr, "\t\"minimumAmplitude\" : \"%f\",\n", stat->min);
+    fprintf(stderr, "\t\"midlineAmplitude\" : \"%f\",\n", stat->mid);
+    fprintf(stderr, "\t\"meanNorm\" : \"%f\",\n", stat->asum/ct);
+    fprintf(stderr, "\t\"meanAmplitude\" : \"%f\",\n", stat->sum1/ct);
+    fprintf(stderr, "\t\"RMSAmplitude\" : \"%f\",\n", sqrt(stat->sum2/ct));
+    fprintf(stderr, "\t\"maximumDelta\" : \"%f\",\n", stat->dmax);
+    fprintf(stderr, "\t\"minimumDelta\" : \"%f\",\n", stat->dmin);
+    fprintf(stderr, "\t\"meanDelta\" : \"%f\",\n", stat->dsum1/(ct-1));
+    fprintf(stderr, "\t\"RMSDelta\" : \"%f\",\n", sqrt(stat->dsum2/(ct-1)));
     freq = sqrt(stat->dsum2/stat->sum2)*effp->in_signal.rate/(M_PI*2);
-    fprintf(stderr, "\t\"roughFrequency\" : %d,\n", (int)freq);
+    fprintf(stderr, "\t\"roughFrequency\" : \"%d\",\n", (int)freq);
     if (amp>0)
-      fprintf(stderr, "\t\"volumeAdjustment\" : %f\n", SOX_SAMPLE_MAX/(amp*scale));
+      fprintf(stderr, "\t\"volumeAdjustment\" : \"%f\"\n", SOX_SAMPLE_MAX/(amp*scale));
     fprintf(stderr, "}\n");
     return SOX_SUCCESS; 
-  } 
+  } // END KYLO
+
+
   /* Just print the volume adjustment */
   if (stat->volume == 1 && amp > 0) {
     fprintf(stderr, "%.3f\n", SOX_SAMPLE_MAX/(amp*scale));
