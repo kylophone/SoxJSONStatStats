@@ -51,7 +51,7 @@ $ sox somefile.wav -n stats -json
         "dcOffset": "0.0004",
         "minLevel": "-0.312927",
         "maxLevel": "0.67926",
-        "peakLeveldB": "-3.359276,
+        "peakLeveldB": "-3.359276",
         "RMSLeveldB": "-27.832778",
         "RMSPeakdB": "-14.554",
         "RMSTrdB": "-309.033158",
