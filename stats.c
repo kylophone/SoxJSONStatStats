@@ -20,7 +20,7 @@
 #include <string.h>
 
 typedef struct {
-  int       scale_bits, hex_bits, json; //KYLO. Added json.
+  int       scale_bits, hex_bits, json;
   double    time_constant, scale;
 
   double    last, sigma_x, sigma_x2, avg_sigma_x2, min_sigma_x2, max_sigma_x2;
@@ -31,15 +31,15 @@ typedef struct {
 
 static int getopts(sox_effect_t * effp, int argc, char **argv)
 {
-  
   priv_t * p = (priv_t *)effp->priv;
 
-  int i; //KYLO. This checks for a -json flag. Removes it from argv, because '-json' doesn't play nice with the GETOPT_NUMERIC function. 
+  int i;
   int minusJsonCounter = 0;
   char** argvMinusJson[argc - 1];
+  /* Checks for a `--json` flag. Removes it from argv, because `--json` doesn't play nice with the GETOPT_NUMERIC function. */
   for (i = 1; i < (argc); i++) {
     minusJsonCounter++;
-      if (strcmp("-json", argv[i]) == 0) {
+      if (strcmp("--json", argv[i]) == 0) {
          minusJsonCounter--;
          p->json = 1;
          continue;
@@ -49,24 +49,19 @@ static int getopts(sox_effect_t * effp, int argc, char **argv)
   if (p->json) {
     argc = argc - 1;
     argv = argvMinusJson;
-  } //KYLO OUT
+  }
 
   int c;
   lsx_getopt_t optstate;
-
-
   lsx_getopt_init(argc, argv, "+x:b:w:s:", NULL, lsx_getopt_flag_none, 1, &optstate);
 
   p->time_constant = .05;
   p->scale = 1;
-  
   while ((c = lsx_getopt(&optstate)) != -1) switch (c) {
-
     GETOPT_NUMERIC(optstate, 'x', hex_bits      ,  2 , 32)
     GETOPT_NUMERIC(optstate, 'b', scale_bits    ,  2 , 32)
     GETOPT_NUMERIC(optstate, 'w', time_constant ,  .01 , 10)
     GETOPT_NUMERIC(optstate, 's', scale         ,  -99, 99)
-
     default: lsx_fail("invalid option `-%c'", optstate.opt); return lsx_usage(effp);
   }
   if (p->hex_bits)
@@ -217,12 +212,12 @@ static int stop(sox_effect_t * effp)
       return SOX_SUCCESS;
     }
 
-    if (p->json) { //KYLO. JSON OUT HERE.
+    if (p->json) {
       if (n == 0) n = 1;
       
       fprintf(stderr, "{\n");
       fprintf(stderr, "\"channelCount\" : \"%d\",\n", n);
-      fprintf(stderr, "\"overall\" : {\n"); // Overall Stats Here
+      fprintf(stderr, "\"overall\" : {\n");
         fprintf(stderr, "\t\"dcOffset\" : \"%f\",\n", max_sigma_x / p->num_samples);
         fprintf(stderr, "\t\"minLevel\" : \"%f\",\n", min);
         fprintf(stderr, "\t\"maxLevel\" : \"%f\",\n", max);
@@ -244,7 +239,7 @@ static int stop(sox_effect_t * effp)
         fprintf(stderr, "\t\"windowSeconds\" : \"%f\"\n", p->time_constant);
       fprintf(stderr, "\t},\n");
       
-        for (i = 0; i < n; i++) { //Channel Stats Here
+        for (i = 0; i < n; i++) {
           fprintf(stderr, "\"ch%d\" : {\n", i + 1);
             priv_t * q = (priv_t *)(effp - effp->flow + i)->priv;
             fprintf(stderr, "\t\"dcOffset\" : \"%f\",\n", q->sigma_x / q->num_samples);
@@ -267,7 +262,7 @@ static int stop(sox_effect_t * effp)
         }
       fprintf(stderr, "}\n");
       return SOX_SUCCESS;
-    } // KYLO OUT
+    }
 
     if (n == 2)
       fprintf(stderr, "             Overall     Left      Right\n");

@@ -34,7 +34,7 @@ typedef struct {
   float *re_out;
   unsigned long fft_size;
   unsigned long fft_offset;
-  int json; //KYLO
+  int json;
 } priv_t;
 
 
@@ -71,7 +71,7 @@ static int sox_stat_getopts(sox_effect_t * effp, int argc, char **argv)
       stat->fft = 1;
     else if (!(strcmp(*argv, "-d")))
       stat->volume = 2;
-    else if (!(strcmp(*argv, "-json"))) //KYLO
+    else if (!(strcmp(*argv, "--json")))
       stat->json = 1;
     else {
       lsx_fail("Summary effect: unknown option");
@@ -260,8 +260,7 @@ static int sox_stat_stop(sox_effect_t * effp)
   amp = -stat->min;
   if (amp < stat->max)
     amp = stat->max;
-  
-  /* print out the info in JSON */ //KYLO
+
   if (stat->json) {
     fprintf(stderr, "{\n");
     fprintf(stderr, "\t\"samplesRead\" : \"%d\",\n", stat->read);
@@ -286,8 +285,7 @@ static int sox_stat_stop(sox_effect_t * effp)
       fprintf(stderr, "\t\"volumeAdjustment\" : \"%f\"\n", SOX_SAMPLE_MAX/(amp*scale));
     fprintf(stderr, "}\n");
     return SOX_SUCCESS; 
-  } // END KYLO
-
+  }
 
   /* Just print the volume adjustment */
   if (stat->volume == 1 && amp > 0) {
@@ -328,16 +326,16 @@ static int sox_stat_stop(sox_effect_t * effp)
 
     if (x >= 3.0) {             /* use opposite encoding */
       if (effp->in_encoding->encoding == SOX_ENCODING_UNSIGNED)
-        fprintf(stderr,"\nTry: -t raw -s -1 \n");
+        fprintf(stderr,"\nTry: -t raw -e signed-integer -b 8 \n");
       else
-        fprintf(stderr,"\nTry: -t raw -u -1 \n");
+        fprintf(stderr,"\nTry: -t raw -e unsigned-integer -b 8 \n");
     } else if (x <= 1.0 / 3.0)
       ;                         /* correctly decoded */
     else if (x >= 0.5 && x <= 2.0) { /* use ULAW */
       if (effp->in_encoding->encoding == SOX_ENCODING_ULAW)
-        fprintf(stderr,"\nTry: -t raw -u -1 \n");
+        fprintf(stderr,"\nTry: -t raw -e unsigned-integer -b 8 \n");
       else
-        fprintf(stderr,"\nTry: -t raw -U -1 \n");
+        fprintf(stderr,"\nTry: -t raw -e mu-law -b 8 \n");
     } else
       fprintf(stderr, "\nCan't guess the type\n");
   }
